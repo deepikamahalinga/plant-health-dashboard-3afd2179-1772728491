@@ -1,0 +1,46 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+  previewFeatures = ["postgresqlExtensions"]
+}
+
+model Plot {
+  id          String      @id @default(uuid()) @db.Uuid
+  name        String
+  location    Json        @db.JsonB
+  area        Float       @db.DoublePrecision
+  active      Boolean     @default(true)
+  plantData   PlantData[]
+  createdAt   DateTime    @default(now()) @db.Timestamptz(6)
+  updatedAt   DateTime    @updatedAt @db.Timestamptz(6)
+
+  @@index([active])
+}
+
+model PlantData {
+  id            String    @id @default(uuid()) @db.Uuid
+  plotId        String    @db.Uuid
+  soilCondition Json      @db.JsonB
+  timestamp     DateTime  @db.Timestamptz(6)
+  plot          Plot      @relation(fields: [plotId], references: [id])
+  createdAt     DateTime  @default(now()) @db.Timestamptz(6)
+  updatedAt     DateTime  @updatedAt @db.Timestamptz(6)
+
+  @@index([plotId])
+  @@index([timestamp])
+  @@index([plotId, timestamp])
+}
+
+// Enable TimescaleDB extension
+extension timescaledb schema @postgres
+
+// Hypertable configuration for PlantData
+/// @timescale("PlantData", ["timestamp"])
+/// @timescale.chunk_time_interval("1 day")
+/// @timescale.compress_after("7 days")
+/// @timescale.compress_segmentby("plotId")
+/// @timescale.compress_orderby("timestamp DESC")
