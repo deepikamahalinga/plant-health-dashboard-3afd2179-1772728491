@@ -1,0 +1,115 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+yarn.lock
+package-lock.json
+.yarn/
+
+# Environment and secrets
+.env
+.env.*
+!.env.example
+*.pem
+.aws/
+.credentials/
+
+# Build outputs
+dist/
+build/
+.next/
+out/
+.cache/
+.temp/
+.vite/
+*.tsbuildinfo
+
+# IDE/Editor
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+*.sublime-project
+*.sublime-workspace
+.project
+.settings/
+.classpath
+
+# Logs and temporary files
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Test coverage
+coverage/
+.nyc_output/
+junit.xml
+test-report.xml
+
+# Database
+*.sql
+*.sqlite
+*.sqlite3
+data/
+pgdata/
+timescaledb/
+
+# Next.js
+.next/
+.vercel/
+next-env.d.ts
+.env*.local
+
+# NestJS
+dist/
+/node_modules
+npm-debug.log
+yarn-error.log
+
+# Vite
+dist-ssr/
+*.local
+
+# OS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Misc
+.cache/
+public/assets/
+*.backup
+*.bak
+*.tmp
+*.temp
+.eslintcache
+.stylelintcache
+
+# Docker
+docker-compose.override.yml
+.docker/
+
+# AWS
+.elasticbeanstalk/
+.ebextensions/
+.aws/
+
+# Redis
+*.rdb
+dump.rdb
+
+# Elastic Search
+data/elasticsearch/
+
+# Debug
+debug/
+.debug/
